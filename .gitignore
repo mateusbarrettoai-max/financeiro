@@ -1,9 +1,15 @@
-# Python
+# Arquivos temporários e de bloqueio do Excel
+~$*
+*.tmp
+
+# Dados brutos de extratos bancários e faturamento (privacidade e segurança)
+COMPROVANTES/
+EXTRATOS/
+FATURAMENTO/
+FINANCEIRO/
+
+# Diretório temporário de deploy
+temp_github_repo/
+scratch/
 __pycache__/
 *.pyc
-*.pyo
-
-# Arquivos temporários
-*.tmp
-*.log
-scratch/
