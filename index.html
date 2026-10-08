@@ -744,6 +744,23 @@
         </div>
       </div>
 
+      <!-- ATALHOS RÁPIDOS POR CATEGORIA (1 CLIQUE) -->
+      <div class="flex items-center gap-1.5 overflow-x-auto custom-scroll pb-1 text-xs">
+        <span class="text-[10px] uppercase font-bold text-slate-400 whitespace-nowrap flex items-center gap-1">
+          <i class="fa-solid fa-tags text-sky-400"></i> Atalhos:
+        </span>
+        <button onclick="quickFilterCat('')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] whitespace-nowrap transition">Todas</button>
+        <button onclick="quickFilterCat('Alimentação')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-amber-500/20 hover:text-amber-300 text-slate-300 text-[11px] whitespace-nowrap transition flex items-center gap-1">🍔 Alimentação</button>
+        <button onclick="quickFilterCat('Transporte & Veículos')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-sky-500/20 hover:text-sky-300 text-slate-300 text-[11px] whitespace-nowrap transition flex items-center gap-1">🚗 Transporte</button>
+        <button onclick="quickFilterCat('Moradia')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-indigo-500/20 hover:text-indigo-300 text-slate-300 text-[11px] whitespace-nowrap transition flex items-center gap-1">🏠 Moradia</button>
+        <button onclick="quickFilterCat('Investimento Patrimonial')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-emerald-500/20 hover:text-emerald-300 text-slate-300 text-[11px] whitespace-nowrap transition flex items-center gap-1">🏗️ Apto Salvador</button>
+        <button onclick="quickFilterCat('Custos Escritório')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-rose-500/20 hover:text-rose-300 text-slate-300 text-[11px] whitespace-nowrap transition flex items-center gap-1">💼 Escritório PJ</button>
+        <button onclick="quickFilterCat('Educação (Benjamim)')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-cyan-500/20 hover:text-cyan-300 text-slate-300 text-[11px] whitespace-nowrap transition flex items-center gap-1">🎓 Educação</button>
+        <button onclick="quickFilterCat('Saúde & Bem-Estar')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-teal-500/20 hover:text-teal-300 text-slate-300 text-[11px] whitespace-nowrap transition flex items-center gap-1">🏥 Saúde</button>
+        <button onclick="quickFilterCat('Compras & Lazer')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-purple-500/20 hover:text-purple-300 text-slate-300 text-[11px] whitespace-nowrap transition flex items-center gap-1">🛍️ Compras & Lazer</button>
+        <button onclick="quickFilterCat('Receita')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-emerald-500/20 hover:text-emerald-300 text-slate-300 text-[11px] whitespace-nowrap transition flex items-center gap-1">💰 Receitas PJ</button>
+      </div>
+
       <!-- DROPDOWNS DE FILTRO -->
       <div class="grid grid-cols-2 md:grid-cols-5 gap-3 p-3.5 rounded-xl bg-slate-900/60 border border-slate-800/80 text-xs">
         <div>
@@ -764,17 +781,19 @@
         </div>
         <div>
           <label class="block text-slate-400 text-[10px] uppercase font-bold mb-1">Categoria</label>
-          <select id="colFilterCategoria" onchange="applyColumnFilters()" class="w-full px-2 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-white">
+          <select id="colFilterCategoria" onchange="applyColumnFilters()" class="w-full px-2 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-white font-semibold text-amber-300">
             <option value="">Todas as Categorias</option>
-            <option value="Investimento Patrimonial">Investimento Patrimonial (Apto Salvador)</option>
-            <option value="Alimentação">Alimentação</option>
-            <option value="Transporte & Veículos">Transporte & Veículos</option>
-            <option value="Moradia">Moradia</option>
-            <option value="Educação (Benjamim)">Educação (Benjamim)</option>
-            <option value="Saúde & Bem-Estar">Saúde & Bem-Estar</option>
+            <option value="Alimentação">Alimentação (Mercados, Feiras, Lanches)</option>
+            <option value="Transporte & Veículos">Transporte & Veículos (Carro, Financiamento, Latam)</option>
+            <option value="Moradia">Moradia (Aluguel Joelma, CEMIG, Condomínio)</option>
+            <option value="Investimento Patrimonial">Investimento Patrimonial (Apto Salvador na Planta)</option>
             <option value="Custos Escritório">Custos Escritório (PJ)</option>
-            <option value="Compras & Lazer">Compras & Lazer</option>
-            <option value="Receita">Receitas Operacionais</option>
+            <option value="Educação (Benjamim)">Educação (Benjamim)</option>
+            <option value="Saúde & Bem-Estar">Saúde & Bem-Estar (Unimed, Farmácia)</option>
+            <option value="Compras & Lazer">Compras & Lazer (Casas Bahia, Parcelas)</option>
+            <option value="Receita">Receitas Operacionais (PJ)</option>
+            <option value="Pagamento Fatura">Pagamentos de Faturas</option>
+            <option value="Presentes">Presentes / Doações</option>
           </select>
         </div>
         <div>
@@ -802,7 +821,47 @@
         </div>
       </div>
 
-      <!-- TABELA COM AUTO-SCROLL -->
+      <!-- PAINEL DINÂMICO DE TOTAIS FILTRADOS (SOMA EM TEMPO REAL) -->
+      <div id="filterSummaryBar" class="p-4 rounded-xl bg-gradient-to-r from-slate-900 via-sky-950/30 to-slate-900 border border-sky-500/30 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-lg shadow-sky-950/20">
+        <div class="flex items-center gap-3.5">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-xl shrink-0">
+            <i class="fa-solid fa-calculator"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Total do Filtro Atual</span>
+              <span id="activeFilterBadge" class="text-[11px] font-semibold px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">
+                Todos os Lançamentos
+              </span>
+            </div>
+            <div class="flex items-baseline gap-2 mt-0.5">
+              <span id="sumDisplayPrimary" class="text-2xl md:text-3xl font-extrabold text-amber-400 font-mono tracking-tight">R$ 0,00</span>
+              <span id="sumDisplaySub" class="text-xs text-slate-400 font-medium">soma das despesas filtradas</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- INDICADORES COMPLEMENTARES -->
+        <div class="flex flex-wrap items-center gap-2.5 text-xs">
+          <div class="px-3.5 py-2 rounded-xl bg-slate-950/70 border border-slate-800 text-right">
+            <span class="text-[10px] text-slate-400 font-medium block">Lançamentos</span>
+            <span id="countDisplay" class="text-sm font-bold text-white font-mono">0 transações</span>
+          </div>
+          <div class="px-3.5 py-2 rounded-xl bg-slate-950/70 border border-slate-800 text-right">
+            <span class="text-[10px] text-slate-400 font-medium block">Ticket Médio</span>
+            <span id="avgDisplay" class="text-sm font-bold text-sky-300 font-mono">R$ 0,00</span>
+          </div>
+          <div class="px-3.5 py-2 rounded-xl bg-slate-950/70 border border-slate-800 text-right" id="boxReceitasFilter" style="display: none;">
+            <span class="text-[10px] text-slate-400 font-medium block">Receitas Filtradas</span>
+            <span id="recDisplay" class="text-sm font-bold text-emerald-400 font-mono">R$ 0,00</span>
+          </div>
+          <button onclick="resetFilters()" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-xs font-semibold transition flex items-center gap-1.5">
+            <i class="fa-solid fa-rotate-left text-slate-400"></i> Limpar Filtros
+          </button>
+        </div>
+      </div>
+
+      <!-- TABELA COM AUTO-SCROLL E RODAPÉ FIXO DE TOTAL -->
       <div class="overflow-x-auto custom-scroll border border-slate-800 rounded-xl bg-slate-900/60 max-h-[580px]">
         <table class="w-full text-left text-xs whitespace-nowrap">
           <thead class="bg-slate-900 text-slate-400 uppercase font-semibold border-b border-slate-800 sticky top-0 z-10">
@@ -822,6 +881,20 @@
           <tbody id="filteredTableBody" class="divide-y divide-slate-800/60">
             <!-- Gerado via JS -->
           </tbody>
+          <tfoot class="bg-slate-900 border-t-2 border-slate-700 text-xs font-bold text-white sticky bottom-0 z-10 shadow-lg">
+            <tr>
+              <td colspan="6" class="px-3.5 py-3 text-slate-300">
+                <span id="footLabel" class="uppercase tracking-wider">Total Geral das Despesas Filtradas</span> (<span id="footCount" class="text-amber-400">0</span> lançamentos)
+              </td>
+              <td class="px-3.5 py-3 text-right text-slate-300 uppercase font-semibold">SOMA:</td>
+              <td class="px-3.5 py-3 text-right font-mono text-sm text-amber-400 font-extrabold" id="footTotal">
+                R$ 0,00
+              </td>
+              <td colspan="2" class="px-3.5 py-3 text-slate-400 text-[11px] font-normal" id="footNote">
+                Soma em tempo real das linhas visíveis
+              </td>
+            </tr>
+          </tfoot>
         </table>
       </div>
 
@@ -904,7 +977,13 @@
       }
     }
 
-    // Filtros de Tabela
+    // Atalho Rápido de Categoria
+    function quickFilterCat(catName) {
+      document.getElementById('colFilterCategoria').value = catName;
+      applyColumnFilters();
+    }
+
+    // Filtros de Tabela e Cálculo Dinâmico de Totais
     function applyColumnFilters() {
       const mesVal = document.getElementById('colFilterMes').value;
       const entVal = document.getElementById('colFilterEntidade').value;
@@ -918,7 +997,8 @@
       tbody.innerHTML = '';
 
       let count = 0;
-      let total = 0;
+      let totalDespesas = 0;
+      let totalReceitas = 0;
 
       dataset.forEach(t => {
         // Filtro Mes
@@ -941,7 +1021,11 @@
         }
 
         count++;
-        if (t.tipo === 'Despesa') total += t.valor;
+        if (t.tipo === 'Receita') {
+          totalReceitas += Math.abs(t.valor);
+        } else {
+          totalDespesas += Math.abs(t.valor);
+        }
 
         const tr = document.createElement('tr');
         tr.className = 'hover:bg-slate-800/40 transition';
@@ -973,7 +1057,71 @@
         tbody.appendChild(tr);
       });
 
-      document.getElementById('filteredStats').innerText = `Exibindo ${count} transações | Soma das despesas filtradas: R$ ${total.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+      // Atualizar o Painel de Resumo Superior e Rodapé
+      const activeBadge = document.getElementById('activeFilterBadge');
+      const sumPrimary = document.getElementById('sumDisplayPrimary');
+      const sumSub = document.getElementById('sumDisplaySub');
+      const countDisplay = document.getElementById('countDisplay');
+      const avgDisplay = document.getElementById('avgDisplay');
+      const boxReceitas = document.getElementById('boxReceitasFilter');
+      const recDisplay = document.getElementById('recDisplay');
+      const footTotal = document.getElementById('footTotal');
+      const footCount = document.getElementById('footCount');
+      const footLabel = document.getElementById('footLabel');
+      const filteredStats = document.getElementById('filteredStats');
+
+      let filterDesc = [];
+      if (mesVal) filterDesc.push(mesVal);
+      if (catVal) filterDesc.push(catVal);
+      if (entVal) filterDesc.push(entVal);
+      if (contaVal) filterDesc.push(contaVal);
+      if (cruzVal) filterDesc.push(cruzVal);
+      if (searchVal) filterDesc.push('"' + searchVal + '"');
+
+      if (activeBadge) activeBadge.innerText = filterDesc.length > 0 ? filterDesc.join(' • ') : 'Todos os Lançamentos';
+
+      if (catVal === 'Receita') {
+        if (sumPrimary) {
+          sumPrimary.innerText = 'R$ ' + totalReceitas.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+          sumPrimary.className = 'text-2xl md:text-3xl font-extrabold text-emerald-400 font-mono tracking-tight';
+        }
+        if (sumSub) sumSub.innerText = 'total de receitas filtradas';
+        if (footTotal) {
+          footTotal.innerText = '+ R$ ' + totalReceitas.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+          footTotal.className = 'px-3.5 py-3 text-right font-mono text-sm text-emerald-400 font-extrabold';
+        }
+        if (footLabel) footLabel.innerText = 'Total de Receitas Filtradas';
+        if (boxReceitas) boxReceitas.style.display = 'none';
+      } else {
+        if (sumPrimary) {
+          sumPrimary.innerText = 'R$ ' + totalDespesas.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+          sumPrimary.className = 'text-2xl md:text-3xl font-extrabold text-amber-400 font-mono tracking-tight';
+        }
+        if (sumSub) sumSub.innerText = catVal ? 'total gasto em ' + catVal.toLowerCase() : 'soma das despesas filtradas';
+        if (footTotal) {
+          footTotal.innerText = 'R$ ' + totalDespesas.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+          footTotal.className = 'px-3.5 py-3 text-right font-mono text-sm text-amber-400 font-extrabold';
+        }
+        if (footLabel) footLabel.innerText = catVal ? 'Total Gasto em ' + catVal : 'Total Geral das Despesas Filtradas';
+
+        if (totalReceitas > 0 && !catVal) {
+          if (boxReceitas) boxReceitas.style.display = 'block';
+          if (recDisplay) recDisplay.innerText = '+ R$ ' + totalReceitas.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        } else {
+          if (boxReceitas) boxReceitas.style.display = 'none';
+        }
+      }
+
+      if (countDisplay) countDisplay.innerText = count + ' transações';
+      if (footCount) footCount.innerText = count;
+
+      const relevantTotal = catVal === 'Receita' ? totalReceitas : totalDespesas;
+      const avg = count > 0 ? (relevantTotal / count) : 0;
+      if (avgDisplay) avgDisplay.innerText = 'R$ ' + avg.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+      if (filteredStats) {
+        filteredStats.innerText = 'Exibindo ' + count + ' transações | Soma: R$ ' + relevantTotal.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      }
     }
 
     function resetFilters() {
