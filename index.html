@@ -293,39 +293,153 @@
           <h2 class="text-xl font-bold text-white mt-1">DRE e Balanço Consolidado de Setembro/2026</h2>
           <p class="text-xs text-slate-300 mt-1">Balanço oficial da Moura Barretto Engenharia e custos consolidados da família.</p>
         </div>
-        <div class="flex items-center gap-3">
-          <div class="px-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-right">
+        <div class="flex flex-wrap items-center gap-2.5">
+          <div class="px-3.5 py-2 rounded-xl bg-slate-900/90 border border-slate-800 text-right">
             <span class="text-[10px] uppercase text-slate-400 font-bold block">Faturamento PJ</span>
-            <span class="text-lg font-bold text-emerald-400">R$ 16.560,00</span>
+            <span class="text-base font-bold text-emerald-400">R$ 16.560,00</span>
           </div>
-          <div class="px-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-right">
+          <div class="px-3.5 py-2 rounded-xl bg-slate-900/90 border border-slate-800 text-right">
             <span class="text-[10px] uppercase text-slate-400 font-bold block">Lucro Líquido PJ</span>
-            <span class="text-lg font-bold text-sky-400">R$ 11.885,35 (71,8%)</span>
+            <span class="text-base font-bold text-sky-400">R$ 11.885,35 (71,8%)</span>
+          </div>
+          <div class="px-3.5 py-2 rounded-xl bg-rose-950/50 border border-rose-500/40 text-right">
+            <span class="text-[10px] uppercase text-rose-300 font-bold block">Saldo Integrado (PF+PJ)</span>
+            <span class="text-base font-bold text-rose-400">- R$ 4.950,12</span>
           </div>
         </div>
       </div>
 
-      <!-- CARDS KPI DE SETEMBRO -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="panel-card rounded-2xl p-4">
-          <span class="text-xs text-slate-400 font-medium">Receitas PJ</span>
+      <!-- CARDS KPI DE SETEMBRO: VISÃO EMPRESARIAL + VISÃO INTEGRADA -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5">
+        <div class="panel-card rounded-2xl p-4 border-l-4 border-l-emerald-500">
+          <span class="text-xs text-slate-400 font-medium">1. Receitas PJ</span>
           <div class="text-xl font-bold text-emerald-400 mt-1">R$ 16.560,00</div>
           <p class="text-[11px] text-slate-400 mt-0.5">Grado R$ 7.200 + Wise R$ 9.360</p>
         </div>
-        <div class="panel-card rounded-2xl p-4">
-          <span class="text-xs text-slate-400 font-medium">Custos Escritório PJ</span>
+        <div class="panel-card rounded-2xl p-4 border-l-4 border-l-sky-500">
+          <span class="text-xs text-slate-400 font-medium">2. Custos Escritório PJ</span>
           <div class="text-xl font-bold text-white mt-1">R$ 4.674,65</div>
           <p class="text-[11px] text-slate-400 mt-0.5">Dentro da meta de R$ 5.689</p>
         </div>
-        <div class="panel-card rounded-2xl p-4">
-          <span class="text-xs text-slate-400 font-medium">Custos Subsistência PF</span>
+        <div class="panel-card rounded-2xl p-4 border-l-4 border-l-indigo-500">
+          <span class="text-xs text-slate-400 font-medium">3. Custos Família PF</span>
           <div class="text-xl font-bold text-white mt-1">R$ 16.835,47</div>
           <p class="text-[11px] text-slate-400 mt-0.5">Inclui 2x carro e parcelas antigas</p>
         </div>
+        <div class="panel-card rounded-2xl p-4 border-l-4 border-l-amber-500 bg-amber-500/5">
+          <span class="text-xs text-amber-300 font-semibold flex items-center gap-1">
+            <i class="fa-solid fa-calculator text-[10px]"></i> 4. Total Despesas (PF+PJ)
+          </span>
+          <div class="text-xl font-bold text-amber-400 mt-1">R$ 21.510,12</div>
+          <p class="text-[11px] text-slate-400 mt-0.5">R$ 4.674 (PJ) + R$ 16.835 (PF)</p>
+        </div>
+        <div class="panel-card rounded-2xl p-4 border-l-4 border-l-rose-500 bg-rose-500/5">
+          <span class="text-xs text-rose-300 font-semibold flex items-center gap-1">
+            <i class="fa-solid fa-circle-minus text-[10px]"></i> 5. Saldo Global (PF+PJ)
+          </span>
+          <div class="text-xl font-bold text-rose-400 mt-1">- R$ 4.950,12</div>
+          <p class="text-[11px] text-slate-400 mt-0.5">Déficit: Saídas superaram Receitas</p>
+        </div>
         <div class="panel-card rounded-2xl p-4 border-l-4 border-l-emerald-500">
-          <span class="text-xs text-slate-400 font-medium">Investimento Apto SSA</span>
+          <span class="text-xs text-slate-400 font-medium">6. Investimento Apto SSA</span>
           <div class="text-xl font-bold text-emerald-400 mt-1">R$ 1.662,67</div>
           <p class="text-[11px] text-slate-400 mt-0.5">Formação de Patrimônio na Planta</p>
+        </div>
+      </div>
+
+      <!-- DEMONSTRAÇÃO DO BOLSO INTEGRADO & POR QUE SETEMBRO TEVE SALDO NEGATIVO -->
+      <div class="panel-card rounded-2xl p-5 border border-slate-800 bg-gradient-to-r from-slate-900 via-[#131c31] to-slate-900 space-y-4">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-slate-800 pb-3">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-rose-400 flex items-center gap-1.5">
+              <i class="fa-solid fa-scale-unbalanced text-rose-400"></i> Demonstração do Bolso Único Integrado (Empresa + Família)
+            </span>
+            <h3 class="text-base font-bold text-white mt-0.5">Balanço Consolidado: Entradas vs Total de Gastos no Mês</h3>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="px-3 py-1 rounded-lg text-xs font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20">
+              Total Despesas: R$ 21.510,12
+            </span>
+            <span class="px-3 py-1 rounded-lg text-xs font-bold bg-rose-500/10 text-rose-400 border border-rose-500/20">
+              Saldo do Mês: - R$ 4.950,12
+            </span>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          <!-- Coluna 1: A Equação Real de Caixa -->
+          <div class="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800/80 space-y-2">
+            <h4 class="font-bold text-slate-200 border-b border-slate-800 pb-1.5 flex items-center justify-between">
+              <span>1. Equação Real de Caixa</span>
+              <span class="text-slate-400 font-normal">Setembro/2026</span>
+            </h4>
+            <div class="flex justify-between py-1 text-slate-300">
+              <span>(+) Receitas Totais Recebidas (PJ):</span>
+              <strong class="text-emerald-400">R$ 16.560,00</strong>
+            </div>
+            <div class="flex justify-between py-1 text-slate-300">
+              <span>(-) Despesas Operacionais Escritório (PJ):</span>
+              <strong class="text-slate-300">- R$ 4.674,65</strong>
+            </div>
+            <div class="flex justify-between py-1 text-slate-300">
+              <span>(-) Despesas da Família / Sobrevivência (PF):</span>
+              <strong class="text-slate-300">- R$ 16.835,47</strong>
+            </div>
+            <div class="flex justify-between py-1.5 border-t border-slate-800 text-amber-300 font-bold">
+              <span>(=) SOMA DAS DESPESAS (PF + PJ):</span>
+              <span class="text-amber-400">R$ 21.510,12</span>
+            </div>
+            <div class="flex justify-between py-1.5 border-t border-slate-800 text-rose-400 font-bold bg-rose-500/10 px-2 rounded-lg">
+              <span>(=) SALDO OPERACIONAL DO MÊS:</span>
+              <span>- R$ 4.950,12</span>
+            </div>
+            <div class="flex justify-between py-1 text-slate-400 text-[11px] pt-1">
+              <span>(-) Aporte Apto Salvador (Ocean Breeze):</span>
+              <span class="text-sky-400">- R$ 1.662,67</span>
+            </div>
+            <div class="flex justify-between py-1 border-t border-slate-800/60 text-slate-300 font-semibold text-[11px]">
+              <span>(=) Desembolso Líquido Total em Caixa:</span>
+              <strong class="text-rose-400">- R$ 6.612,79</strong>
+            </div>
+          </div>
+
+          <!-- Coluna 2: Os Fatores Específicos que Pressionaram Setembro -->
+          <div class="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800/80 space-y-2">
+            <h4 class="font-bold text-slate-200 border-b border-slate-800 pb-1.5 flex items-center justify-between">
+              <span>2. Por que o saldo ficou negativo?</span>
+              <span class="text-amber-400">Pontual de Setembro</span>
+            </h4>
+            <ul class="space-y-1.5 text-slate-300 text-[11px] leading-relaxed">
+              <li class="flex items-start gap-1.5">
+                <span class="text-rose-400 font-bold">•</span>
+                <span><strong>2 Parcelas de Carro juntas:</strong> R$ 4.298,74 pagas no mesmo mês para regularizar o financiamento Renault.</span>
+              </li>
+              <li class="flex items-start gap-1.5">
+                <span class="text-rose-400 font-bold">•</span>
+                <span><strong>Parcelas antigas ativas no cartão:</strong> Casas Bahia (R$ 678,77) + Promo (R$ 633,97) + Sigga (R$ 113,15) = R$ 1.425,89.</span>
+              </li>
+              <li class="flex items-start gap-1.5">
+                <span class="text-sky-400 font-bold">•</span>
+                <span><strong>Aporte de Salvador na planta:</strong> R$ 1.662,67 destinados à formação patrimonial.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Coluna 3: A Reversão em Outubro -->
+          <div class="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800/80 space-y-2">
+            <h4 class="font-bold text-emerald-400 border-b border-slate-800 pb-1.5 flex items-center justify-between">
+              <span>3. A Virada Positiva em Outubro</span>
+              <span class="text-emerald-400 font-bold">Alívio Imediato</span>
+            </h4>
+            <div class="text-[11px] text-slate-300 space-y-2 leading-relaxed">
+              <p>
+                As parcelas antigas de compras <strong>terminaram em Setembro</strong>, liberando <strong class="text-emerald-400">R$ 1.888,84/mês</strong> a partir de Outubro.
+              </p>
+              <p>
+                Com o financiamento do carro em dia (apenas 1 parcela/mês em vez de 2), os custos despencam de <strong>R$ 21.510 para ~R$ 16.700</strong>, reequilibrando as finanças com folga no caixa!
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
