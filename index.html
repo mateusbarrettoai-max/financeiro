@@ -45,12 +45,14 @@
     .tab-btn.active {
       background: #0284c7;
       color: #ffffff;
-      font-weight: 600;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
     }
     .month-pill.active {
       background: #059669;
       color: #ffffff;
       font-weight: 700;
+      box-shadow: 0 2px 8px rgba(5, 150, 105, 0.4);
     }
   </style>
 </head>
@@ -66,44 +68,41 @@
         <div>
           <div class="flex items-center gap-2">
             <h1 class="text-base font-bold text-white tracking-tight">Portal Financeiro & Patrimonial</h1>
-            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">v3.0 Multi-Mês</span>
+            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">v4.0 Multi-Mês</span>
           </div>
           <p class="text-xs text-slate-400">Moura Barretto Engenharia Ltda (PJ) & Mateus Moura Barretto (PF)</p>
         </div>
       </div>
 
-      <!-- SELETOR DE MÊS & AÇÕES -->
-      <div class="flex flex-wrap items-center gap-2">
+      <!-- SELETOR DE MÊS NO TOPO & EXCEL -->
+      <div class="flex flex-wrap items-center gap-2.5">
         <div class="flex items-center bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs">
-          <button onclick="setMonthFilter('10/2026')" id="pill-out" class="month-pill active px-3 py-1 rounded-lg text-slate-300 hover:text-white transition">
-            ⚡ Outubro/2026 (Em Andamento)
+          <button onclick="selectMonthView('outubro')" id="pill-out" class="month-pill active px-3.5 py-1.5 rounded-lg text-slate-300 hover:text-white transition flex items-center gap-1.5">
+            <i class="fa-solid fa-bolt text-amber-400"></i> Outubro/2026 (Em Andamento)
           </button>
-          <button onclick="setMonthFilter('09/2026')" id="pill-set" class="month-pill px-3 py-1 rounded-lg text-slate-400 hover:text-white transition">
-            🗓️ Setembro/2026 (Consolidado)
+          <button onclick="selectMonthView('setembro')" id="pill-set" class="month-pill px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition flex items-center gap-1.5">
+            <i class="fa-solid fa-calendar-check text-sky-400"></i> Setembro/2026 (Consolidado)
           </button>
         </div>
 
-        <a href="CONTROLE_FINANCEIRO_MESTRE_2026_V3.xlsx" download class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/30 text-xs font-semibold transition">
+        <a href="CONTROLE_FINANCEIRO_MESTRE_2026_V3.xlsx" download class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/30 text-xs font-semibold transition">
           <i class="fa-solid fa-file-excel"></i>
           <span>Baixar Excel</span>
         </a>
       </div>
     </div>
 
-    <!-- TABS DE NAVEGAÇÃO -->
+    <!-- TABS DE NAVEGAÇÃO PRINCIPAL -->
     <div class="max-w-7xl mx-auto mt-3 pt-3 border-t border-slate-800/60 overflow-x-auto custom-scroll">
       <nav class="flex items-center gap-1.5 text-xs whitespace-nowrap">
-        <button onclick="switchTab('tempo-real')" id="tab-nav-tempo-real" class="tab-btn active px-3.5 py-1.5 rounded-lg text-slate-300 hover:text-white transition flex items-center gap-2">
-          <i class="fa-solid fa-bolt text-amber-400"></i> Outubro em Tempo Real
+        <button onclick="switchTab('outubro')" id="tab-nav-outubro" class="tab-btn active px-3.5 py-1.5 rounded-lg text-slate-300 hover:text-white transition flex items-center gap-2">
+          <i class="fa-solid fa-bolt text-amber-400"></i> Outubro/2026 (Em Andamento)
+        </button>
+        <button onclick="switchTab('setembro')" id="tab-nav-setembro" class="tab-btn px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition flex items-center gap-2">
+          <i class="fa-solid fa-calendar-check text-sky-400"></i> Setembro/2026 (Consolidado)
         </button>
         <button onclick="switchTab('imoveis')" id="tab-nav-imoveis" class="tab-btn px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition flex items-center gap-2">
           <i class="fa-solid fa-building-columns text-emerald-400"></i> Os 3 Imóveis & Patrimônio
-        </button>
-        <button onclick="switchTab('pf')" id="tab-nav-pf" class="tab-btn px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition flex items-center gap-2">
-          <i class="fa-solid fa-user text-sky-400"></i> Pessoal por Grupos (PF)
-        </button>
-        <button onclick="switchTab('pj')" id="tab-nav-pj" class="tab-btn px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition flex items-center gap-2">
-          <i class="fa-solid fa-briefcase text-indigo-400"></i> Escritório (PJ)
         </button>
         <button onclick="switchTab('prolabore')" id="tab-nav-prolabore" class="tab-btn px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition flex items-center gap-2">
           <i class="fa-solid fa-scale-balanced text-rose-400"></i> Transição Pró-Labore
@@ -119,16 +118,16 @@
   <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 space-y-6">
 
     <!-- ============================================================== -->
-    <!-- TAB 1: OUTUBRO EM TEMPO REAL (PAGO vs A PAGAR) -->
+    <!-- ABA 1: OUTUBRO/2026 (EM ANDAMENTO: PAGO vs A PAGAR) -->
     <!-- ============================================================== -->
-    <div id="view-tempo-real" class="space-y-6">
-      <!-- BANNER EXECUTIVO -->
+    <div id="view-outubro" class="space-y-6">
+      <!-- BANNER EXECUTIVO DE OUTUBRO -->
       <div class="p-5 rounded-2xl bg-gradient-to-r from-amber-950/40 via-slate-900 to-slate-900 border border-amber-500/30 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <span class="text-xs uppercase font-extrabold tracking-wider text-amber-400 flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span> Situação em Tempo Real (01 a 07 de Outubro)
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></span> Mês Ativo • Situação em Tempo Real (01 a 07 de Outubro)
           </span>
-          <h2 class="text-xl font-bold text-white mt-1">Gestão de Fluxo: Contas Pagas vs Contas Pendentes</h2>
+          <h2 class="text-xl font-bold text-white mt-1">Gestão de Fluxo de Caixa: O que Já Foi Pago vs O que Falta Pagar</h2>
           <p class="text-xs text-slate-300 mt-1">Acompanhamento contínuo dos pagamentos já debitados e previsão dos compromissos até 31/10.</p>
         </div>
         <div class="flex items-center gap-3">
@@ -147,11 +146,11 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div class="panel-card rounded-2xl p-4 border-l-4 border-l-emerald-500">
           <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
-            <span>Alívio Conquistado (Setembro)</span>
+            <span>Alívio Conquistado em Outubro</span>
             <i class="fa-solid fa-circle-check text-emerald-400"></i>
           </div>
           <div class="text-2xl font-bold text-emerald-400">R$ 1.888,84 /mês</div>
-          <p class="text-[11px] text-slate-400 mt-1">Fim de Casas Bahia (-R$ 678), Vai de Promo (-R$ 633), Sigga (-R$ 113) e Gol PJ (-R$ 462).</p>
+          <p class="text-[11px] text-slate-400 mt-1">Fim definitivo de Casas Bahia (-R$ 678), Vai de Promo (-R$ 633), Sigga (-R$ 113) e Gol PJ (-R$ 462).</p>
         </div>
 
         <div class="panel-card rounded-2xl p-4 border-l-4 border-l-sky-500">
@@ -165,7 +164,7 @@
 
         <div class="panel-card rounded-2xl p-4 border-l-4 border-l-amber-500">
           <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
-            <span>Economia Mensal Total</span>
+            <span>Economia Mensal Acumulada</span>
             <i class="fa-solid fa-piggy-bank text-amber-400"></i>
           </div>
           <div class="text-2xl font-bold text-amber-400">R$ 2.965,71 /mês</div>
@@ -173,14 +172,87 @@
         </div>
       </div>
 
-      <!-- TABELA DE CONTAS A PAGAR ATÉ 31/10 -->
+      <!-- RESUMO DO QUE JÁ FOI PAGO NESTE INÍCIO DE OUTUBRO -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="panel-card rounded-2xl p-5 space-y-3">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
+            <h3 class="text-sm font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-receipt text-emerald-400"></i> Já Pago na Pessoa Jurídica (PJ) • 01 a 07/10
+            </h3>
+            <span class="text-xs font-bold text-emerald-400">R$ 3.037,47</span>
+          </div>
+          <div class="space-y-2 text-xs">
+            <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
+              <span>• Estagiária Fernanda Mayra (Bolsa):</span>
+              <strong class="text-white">R$ 1.621,00</strong>
+            </div>
+            <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
+              <span>• Latam Passagens (Trabalho):</span>
+              <strong class="text-white">R$ 642,49</strong>
+            </div>
+            <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
+              <span>• Gol Linhas Aéreas (3/3 - FIM!):</span>
+              <strong class="text-emerald-400">R$ 246,57</strong>
+            </div>
+            <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
+              <span>• Azul Seguros Auto (10/10 - FIM!):</span>
+              <strong class="text-emerald-400">R$ 238,77</strong>
+            </div>
+            <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
+              <span>• Softwares (OpenAI ChatGPT R$ 106 + Google Workspace R$ 98):</span>
+              <strong class="text-white">R$ 204,73</strong>
+            </div>
+            <div class="flex justify-between py-1 text-slate-300">
+              <span>• Internet Escritório Pouso Alegre:</span>
+              <strong class="text-white">R$ 99,90</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-card rounded-2xl p-5 space-y-3">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
+            <h3 class="text-sm font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-basket-shopping text-sky-400"></i> Já Pago na Pessoa Física (PF) • 01 a 07/10
+            </h3>
+            <span class="text-xs font-bold text-sky-400">R$ 3.317,84</span>
+          </div>
+          <div class="space-y-2 text-xs">
+            <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
+              <span>• Economart Atacado (Compra Principal do Mês):</span>
+              <strong class="text-white">R$ 1.379,07</strong>
+            </div>
+            <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
+              <span>• Latam Linhas Aéreas (4/4 - FIM!):</span>
+              <strong class="text-emerald-400">R$ 426,53</strong>
+            </div>
+            <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
+              <span>• Feiras, Padarias & Lanches Rápidos:</span>
+              <strong class="text-white">~R$ 380,00</strong>
+            </div>
+            <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
+              <span>• Farmácias (Raia 1/3, Natusfarma, Masterformula):</span>
+              <strong class="text-white">R$ 228,56</strong>
+            </div>
+            <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
+              <span>• Respect 4 Jiu-Jitsu (3/3 - FIM!):</span>
+              <strong class="text-emerald-400">R$ 165,00</strong>
+            </div>
+            <div class="flex justify-between py-1 text-slate-300">
+              <span>• Apto Salvador (Ocean Breeze na Planta):</span>
+              <strong class="text-emerald-400">R$ 1.673,59 (Investimento)</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHECKLIST DE CONTAS A PAGAR ATÉ 31/10 -->
       <div class="panel-card rounded-2xl p-5 space-y-4">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-3">
           <div>
             <h3 class="text-sm font-bold text-white flex items-center gap-2">
-              <i class="fa-solid fa-calendar-check text-amber-400"></i> Checklist de Contas a Pagar em Outubro (Previsão)
+              <i class="fa-solid fa-calendar-check text-amber-400"></i> Checklist de Contas a Pagar em Outubro (Previsão de Compromissos)
             </h3>
-            <p class="text-xs text-slate-400">14 compromissos mapeados para quitação ao longo das próximas semanas.</p>
+            <p class="text-xs text-slate-400">14 contas essenciais para quitação no decorrer das próximas semanas de Outubro.</p>
           </div>
           <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
             Total Estimado Pendente: R$ 10.358,90
@@ -201,7 +273,7 @@
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-800/60" id="tabela-pendentes">
-              <!-- Gerado dinamicamente via JS -->
+              <!-- Gerado via JS -->
             </tbody>
           </table>
         </div>
@@ -209,7 +281,148 @@
     </div>
 
     <!-- ============================================================== -->
-    <!-- TAB 2: OS 3 IMÓVEIS & PATRIMÔNIO (ESCLARECIMENTO ESTRATÉGICO) -->
+    <!-- ABA 2: SETEMBRO/2026 (CONSOLIDADO COMPLETO) -->
+    <!-- ============================================================== -->
+    <div id="view-setembro" class="hidden space-y-6">
+      <!-- BANNER SETEMBRO -->
+      <div class="p-5 rounded-2xl bg-gradient-to-r from-sky-950/40 via-slate-900 to-slate-900 border border-sky-800/30 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs uppercase font-extrabold tracking-wider text-sky-400 flex items-center gap-2">
+            <i class="fa-solid fa-lock text-sky-400"></i> Mês Fechado & Conciliado
+          </span>
+          <h2 class="text-xl font-bold text-white mt-1">DRE e Balanço Consolidado de Setembro/2026</h2>
+          <p class="text-xs text-slate-300 mt-1">Balanço oficial da Moura Barretto Engenharia e custos consolidados da família.</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="px-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-right">
+            <span class="text-[10px] uppercase text-slate-400 font-bold block">Faturamento PJ</span>
+            <span class="text-lg font-bold text-emerald-400">R$ 16.560,00</span>
+          </div>
+          <div class="px-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-right">
+            <span class="text-[10px] uppercase text-slate-400 font-bold block">Lucro Líquido PJ</span>
+            <span class="text-lg font-bold text-sky-400">R$ 11.885,35 (71,8%)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARDS KPI DE SETEMBRO -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="panel-card rounded-2xl p-4">
+          <span class="text-xs text-slate-400 font-medium">Receitas PJ</span>
+          <div class="text-xl font-bold text-emerald-400 mt-1">R$ 16.560,00</div>
+          <p class="text-[11px] text-slate-400 mt-0.5">Grado R$ 7.200 + Wise R$ 9.360</p>
+        </div>
+        <div class="panel-card rounded-2xl p-4">
+          <span class="text-xs text-slate-400 font-medium">Custos Escritório PJ</span>
+          <div class="text-xl font-bold text-white mt-1">R$ 4.674,65</div>
+          <p class="text-[11px] text-slate-400 mt-0.5">Dentro da meta de R$ 5.689</p>
+        </div>
+        <div class="panel-card rounded-2xl p-4">
+          <span class="text-xs text-slate-400 font-medium">Custos Subsistência PF</span>
+          <div class="text-xl font-bold text-white mt-1">R$ 16.835,47</div>
+          <p class="text-[11px] text-slate-400 mt-0.5">Inclui 2x carro e parcelas antigas</p>
+        </div>
+        <div class="panel-card rounded-2xl p-4 border-l-4 border-l-emerald-500">
+          <span class="text-xs text-slate-400 font-medium">Investimento Apto SSA</span>
+          <div class="text-xl font-bold text-emerald-400 mt-1">R$ 1.662,67</div>
+          <p class="text-[11px] text-slate-400 mt-0.5">Formação de Patrimônio na Planta</p>
+        </div>
+      </div>
+
+      <!-- DRE PJ SETEMBRO & GRUPOS PF -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- DRE PJ -->
+        <div class="panel-card rounded-2xl p-5 space-y-3">
+          <h3 class="text-sm font-bold text-white border-b border-slate-800 pb-2.5 flex items-center justify-between">
+            <span>DRE Operacional da Empresa (PJ)</span>
+            <span class="text-xs font-semibold text-emerald-400">Margem: 71,8%</span>
+          </h3>
+          <div class="space-y-2 text-xs">
+            <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
+              <span>(+) Faturamento Nacional (Grado Ondina):</span>
+              <strong class="text-white">R$ 7.200,00</strong>
+            </div>
+            <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
+              <span>(+) Contrato Internacional (Wise TDP Braga):</span>
+              <strong class="text-white">R$ 9.360,00</strong>
+            </div>
+            <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
+              <span>(=) RECEITA BRUTA OPERACIONAL:</span>
+              <strong class="text-emerald-400">R$ 16.560,00</strong>
+            </div>
+            <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
+              <span>(-) Equipe Técnica (Estágio Fernanda):</span>
+              <strong class="text-rose-400">- R$ 1.701,00</strong>
+            </div>
+            <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
+              <span>(-) Infraestrutura / Coworking & Internet:</span>
+              <strong class="text-rose-400">- R$ 624,90</strong>
+            </div>
+            <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
+              <span>(-) Passagens Aéreas Gol (Parcelas 2/2 e 2/3):</span>
+              <strong class="text-rose-400">- R$ 709,52</strong>
+            </div>
+            <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
+              <span>(-) Tributos, CREA & DCTFWeb:</span>
+              <strong class="text-rose-400">- R$ 558,84</strong>
+            </div>
+            <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
+              <span>(-) Softwares & Cursos (IPOG + Google):</span>
+              <strong class="text-rose-400">- R$ 377,14</strong>
+            </div>
+            <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
+              <span>(-) Frota (Seguro Azul 9/10) & Tarifas:</span>
+              <strong class="text-rose-400">- R$ 703,25</strong>
+            </div>
+            <div class="flex justify-between pt-2 text-sm text-white font-bold bg-slate-900/60 p-2 rounded-lg">
+              <span>LUCRO LÍQUIDO DISPONÍVEL DO PJ:</span>
+              <span class="text-emerald-400">R$ 11.885,35</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- GRUPOS PF SETEMBRO -->
+        <div class="panel-card rounded-2xl p-5 space-y-3">
+          <h3 class="text-sm font-bold text-white border-b border-slate-800 pb-2.5 flex items-center justify-between">
+            <span>Despesas da Família por Grupos (PF)</span>
+            <span class="text-xs font-semibold text-slate-400">Setembro/2026</span>
+          </h3>
+          <div class="space-y-2 text-xs">
+            <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
+              <span>1. Alimentação (Supermercado + Feiras + Lanches):</span>
+              <strong class="text-white">R$ 3.013,11</strong>
+            </div>
+            <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
+              <span>2. Carro & Transporte (2 parcelas RCI + Latam):</span>
+              <strong class="text-white">R$ 5.178,74</strong>
+            </div>
+            <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
+              <span>3. Saúde & Bem-Estar (Unimed + Farmácia + Previdência):</span>
+              <strong class="text-white">R$ 2.470,93</strong>
+            </div>
+            <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
+              <span>4. Educação Benjamim (Escola + Inglês + Sigga):</span>
+              <strong class="text-white">R$ 2.223,15</strong>
+            </div>
+            <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
+              <span>5. Compras & Parcelas Antigas (Casas Bahia + Promo):</span>
+              <strong class="text-white">R$ 1.838,63</strong>
+            </div>
+            <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
+              <span>6. Moradia Real Pouso Alegre (Aluguel + Cemig + TIM):</span>
+              <strong class="text-white">R$ 1.357,01</strong>
+            </div>
+            <div class="flex justify-between py-1 text-slate-300">
+              <span>7. Investimento Patrimonial (Apto Salvador na Planta):</span>
+              <strong class="text-emerald-400">R$ 1.662,67</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- ABA 3: OS 3 IMÓVEIS & PATRIMÔNIO (ESCLARECIMENTO ESTRATÉGICO) -->
     <!-- ============================================================== -->
     <div id="view-imoveis" class="hidden space-y-6">
       <div class="p-5 rounded-2xl bg-gradient-to-r from-emerald-950/40 via-slate-900 to-slate-900 border border-emerald-500/30">
@@ -327,380 +540,7 @@
     </div>
 
     <!-- ============================================================== -->
-    <!-- TAB 3: PESSOAL POR GRUPOS (PF) -->
-    <!-- ============================================================== -->
-    <div id="view-pf" class="hidden space-y-6">
-      <div class="p-5 rounded-2xl bg-gradient-to-r from-sky-950/40 via-slate-900 to-slate-900 border border-sky-800/30">
-        <span class="text-xs uppercase font-extrabold tracking-wider text-sky-400">Gestão Pessoal Familiar</span>
-        <h2 class="text-xl font-bold text-white mt-1">Gastos da Família por Grupos & Subgrupos</h2>
-        <p class="text-xs text-slate-300 mt-1">Alimentação, transporte, escola do Benjamim, saúde e consumo diário.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- PF 1: ALIMENTAÇÃO -->
-        <div class="panel-card rounded-2xl p-5 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
-              <div>
-                <h3 class="text-sm font-bold text-white">1. Alimentação da Casa</h3>
-                <span class="text-[11px] text-slate-400">Meta: R$ 3.000,00</span>
-              </div>
-              <span class="text-base font-bold text-white" id="pf-total-alimentacao">R$ 2.454,00</span>
-            </div>
-            <div class="space-y-2 text-xs">
-              <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
-                <span>• Atacado (Economart / Mart Minas):</span>
-                <strong class="text-white">R$ 1.379,07</strong>
-              </div>
-              <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
-                <span>• Supermercados de Reposição (Buritis):</span>
-                <strong class="text-white">R$ 121,00</strong>
-              </div>
-              <div class="flex justify-between py-1 text-slate-300">
-                <span>• Feiras, Padarias & Lanches Rápidos:</span>
-                <strong class="text-white">~R$ 380,00</strong>
-              </div>
-            </div>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-800/80 text-[11px] text-emerald-400">
-            A compra principal do mês de Outubro já foi liquidada no Economart!
-          </div>
-        </div>
-
-        <!-- PF 2: TRANSPORTE & CARRO -->
-        <div class="panel-card rounded-2xl p-5 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
-              <div>
-                <h3 class="text-sm font-bold text-white">2. Carro & Transporte</h3>
-                <span class="text-[11px] text-slate-400">Meta: R$ 3.200,00</span>
-              </div>
-              <span class="text-base font-bold text-white">R$ 2.506,62</span>
-            </div>
-            <div class="space-y-2 text-xs">
-              <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
-                <span>• Parcela Carro (Banco RCI):</span>
-                <strong class="text-white">R$ 2.080,09</strong>
-              </div>
-              <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
-                <span>• Latam Linhas Aéreas (4/4 - FIM!):</span>
-                <strong class="text-emerald-400">R$ 426,53</strong>
-              </div>
-              <div class="flex justify-between py-1 text-slate-300">
-                <span>• Combustível & Manutenção Prevista:</span>
-                <strong class="text-white">~R$ 350,00</strong>
-              </div>
-            </div>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-800/80 text-[11px] text-emerald-400">
-            🏁 Parcela Latam 4/4 finaliza neste mês!
-          </div>
-        </div>
-
-        <!-- PF 3: EDUCAÇÃO BENJAMIM -->
-        <div class="panel-card rounded-2xl p-5 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
-              <div>
-                <h3 class="text-sm font-bold text-white">3. Educação (Benjamim)</h3>
-                <span class="text-[11px] text-slate-400">Meta: R$ 2.300,00</span>
-              </div>
-              <span class="text-base font-bold text-white">R$ 2.119,50</span>
-            </div>
-            <div class="space-y-2 text-xs">
-              <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
-                <span>• Mensalidade Escola (Obras Sociais):</span>
-                <strong class="text-white">R$ 1.870,00</strong>
-              </div>
-              <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
-                <span>• Inglês (Spectrum Line):</span>
-                <strong class="text-white">R$ 240,00</strong>
-              </div>
-              <div class="flex justify-between py-1 text-slate-300">
-                <span>• Material Escolar / Papelaria:</span>
-                <strong class="text-white">R$ 9,50</strong>
-              </div>
-            </div>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-800/80 text-[11px] text-slate-400">
-            A parcela Sigga Infantil de R$ 113,15 já não existe mais neste mês!
-          </div>
-        </div>
-
-        <!-- PF 4: SAÚDE & BEM-ESTAR -->
-        <div class="panel-card rounded-2xl p-5 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
-              <div>
-                <h3 class="text-sm font-bold text-white">4. Saúde & Bem-Estar</h3>
-                <span class="text-[11px] text-slate-400">Meta: R$ 2.200,00</span>
-              </div>
-              <span class="text-base font-bold text-white">R$ 2.166,39</span>
-            </div>
-            <div class="space-y-2 text-xs">
-              <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
-                <span>• Planos Unimed Família (3 boletos):</span>
-                <strong class="text-white">R$ 1.546,83</strong>
-              </div>
-              <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
-                <span>• Previdência Complementar BB:</span>
-                <strong class="text-white">R$ 226,00</strong>
-              </div>
-              <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
-                <span>• Farmácias (Raia 1/3, Natusfarma):</span>
-                <strong class="text-white">R$ 228,56</strong>
-              </div>
-              <div class="flex justify-between py-1 text-slate-300">
-                <span>• Respect 4 Jiu-Jitsu (3/3 - FIM!):</span>
-                <strong class="text-emerald-400">R$ 165,00</strong>
-              </div>
-            </div>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-800/80 text-[11px] text-emerald-400">
-            🏁 Parcela Jiu-Jitsu 3/3 encerra neste mês!
-          </div>
-        </div>
-
-        <!-- PF 5: MORADIA POUSO ALEGRE -->
-        <div class="panel-card rounded-2xl p-5 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
-              <div>
-                <h3 class="text-sm font-bold text-white">5. Moradia (Pouso Alegre)</h3>
-                <span class="text-[11px] text-slate-400">Meta: R$ 1.500,00</span>
-              </div>
-              <span class="text-base font-bold text-white">R$ 1.310,35</span>
-            </div>
-            <div class="space-y-2 text-xs">
-              <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
-                <span>• Aluguel Residencial (Joelma):</span>
-                <strong class="text-white">R$ 800,00</strong>
-              </div>
-              <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
-                <span>• Energia CEMIG (MG):</span>
-                <strong class="text-white">~R$ 450,00</strong>
-              </div>
-              <div class="flex justify-between py-1 text-slate-300">
-                <span>• Telefonia Móvel (TIM):</span>
-                <strong class="text-white">R$ 60,35</strong>
-              </div>
-            </div>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-800/80 text-[11px] text-slate-400">
-            Custo real de teto da família.
-          </div>
-        </div>
-
-        <!-- PF 6: COMPRAS & LAZER -->
-        <div class="panel-card rounded-2xl p-5 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
-              <div>
-                <h3 class="text-sm font-bold text-white">6. Compras & Lazer</h3>
-                <span class="text-[11px] text-slate-400">Meta: R$ 500,00</span>
-              </div>
-              <span class="text-base font-bold text-white">R$ 326,41</span>
-            </div>
-            <div class="space-y-2 text-xs">
-              <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
-                <span>• Pg *Pza Comercio (4/6):</span>
-                <strong class="text-white">R$ 111,63</strong>
-              </div>
-              <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
-                <span>• Compras Pessoais Novaalianca:</span>
-                <strong class="text-white">R$ 100,00</strong>
-              </div>
-              <div class="flex justify-between py-1 text-slate-300">
-                <span>• Streaming (Paramount / Amazon):</span>
-                <strong class="text-white">R$ 54,89</strong>
-              </div>
-            </div>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-800/80 text-[11px] text-emerald-400">
-            Fim definitivo de Casas Bahia (R$ 678) e Vai de Promo (R$ 633)!
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ============================================================== -->
-    <!-- TAB 4: ESCRITÓRIO (PJ) -->
-    <!-- ============================================================== -->
-    <div id="view-pj" class="hidden space-y-6">
-      <div class="p-5 rounded-2xl bg-gradient-to-r from-indigo-950/40 via-slate-900 to-slate-900 border border-indigo-800/30">
-        <span class="text-xs uppercase font-extrabold tracking-wider text-indigo-400">Gestão Corporativa (PJ)</span>
-        <h2 class="text-xl font-bold text-white mt-1">Custos Operacionais do Escritório de Engenharia</h2>
-        <p class="text-xs text-slate-300 mt-1">Equipe, infraestrutura, softwares técnicos, deslocamentos e impostos da empresa.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- PJ 1: EQUIPE -->
-        <div class="panel-card rounded-2xl p-5 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
-              <div>
-                <h3 class="text-sm font-bold text-white">1. Equipe Técnica & Estágio</h3>
-                <span class="text-[11px] text-slate-400">Meta: R$ 1.800,00</span>
-              </div>
-              <span class="text-base font-bold text-white">R$ 1.621,00</span>
-            </div>
-            <p class="text-xs text-slate-300">• Fernanda Mayra Campos Barretto (Bolsa Estágio)</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-800/80 text-[11px] text-slate-400">
-            Pago regularmente no dia 05 via Caixa PJ.
-          </div>
-        </div>
-
-        <!-- PJ 2: INFRAESTRUTURA -->
-        <div class="panel-card rounded-2xl p-5 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
-              <div>
-                <h3 class="text-sm font-bold text-white">2. Infraestrutura & Coworking</h3>
-                <span class="text-[11px] text-slate-400">Meta: R$ 650,00</span>
-              </div>
-              <span class="text-base font-bold text-white">R$ 624,90</span>
-            </div>
-            <div class="space-y-2 text-xs">
-              <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
-                <span>• Aluguel Escritório Coworking (D W):</span>
-                <strong class="text-white">R$ 525,00</strong>
-              </div>
-              <div class="flex justify-between py-1 text-slate-300">
-                <span>• Internet Fibra Pouso Alegre:</span>
-                <strong class="text-white">R$ 99,90</strong>
-              </div>
-            </div>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-800/80 text-[11px] text-slate-400">
-            Sede física e conectividade do escritório.
-          </div>
-        </div>
-
-        <!-- PJ 3: VIAGENS & DESLOCAMENTOS -->
-        <div class="panel-card rounded-2xl p-5 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
-              <div>
-                <h3 class="text-sm font-bold text-white">3. Viagens & Deslocamentos</h3>
-                <span class="text-[11px] text-slate-400">Meta: R$ 1.200,00</span>
-              </div>
-              <span class="text-base font-bold text-white">R$ 1.127,83</span>
-            </div>
-            <div class="space-y-2 text-xs">
-              <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
-                <span>• Latam Passagens (Trabalho Out):</span>
-                <strong class="text-white">R$ 642,49</strong>
-              </div>
-              <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
-                <span>• Gol Linhas Aéreas (3/3 - FIM!):</span>
-                <strong class="text-emerald-400">R$ 246,57</strong>
-              </div>
-              <div class="flex justify-between py-1 text-slate-300">
-                <span>• Seguro Azul Auto (10/10 - FIM!):</span>
-                <strong class="text-emerald-400">R$ 238,77</strong>
-              </div>
-            </div>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-800/80 text-[11px] text-emerald-400">
-            🏁 Gol 3/3 e Seguro Azul 10/10 encerram neste mês!
-          </div>
-        </div>
-
-        <!-- PJ 4: SOFTWARES & TI -->
-        <div class="panel-card rounded-2xl p-5 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
-              <div>
-                <h3 class="text-sm font-bold text-white">4. Softwares, IA & TI</h3>
-                <span class="text-[11px] text-slate-400">Meta: R$ 500,00</span>
-              </div>
-              <span class="text-base font-bold text-white">R$ 483,87</span>
-            </div>
-            <div class="space-y-2 text-xs">
-              <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
-                <span>• Pós-Graduação IPOG:</span>
-                <strong class="text-white">R$ 279,14</strong>
-              </div>
-              <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
-                <span>• OpenAI ChatGPT + IOF:</span>
-                <strong class="text-white">R$ 106,73</strong>
-              </div>
-              <div class="flex justify-between py-1 text-slate-300">
-                <span>• Google Workspace:</span>
-                <strong class="text-white">R$ 98,00</strong>
-              </div>
-            </div>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-800/80 text-[11px] text-slate-400">
-            Ferramentas computacionais e de cálculo estrutural.
-          </div>
-        </div>
-
-        <!-- PJ 5: TRIBUTOS & CONSELHOS -->
-        <div class="panel-card rounded-2xl p-5 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
-              <div>
-                <h3 class="text-sm font-bold text-white">5. Tributos, CREA & Taxas</h3>
-                <span class="text-[11px] text-slate-400">Meta: R$ 600,00</span>
-              </div>
-              <span class="text-base font-bold text-white">R$ 558,84</span>
-            </div>
-            <div class="space-y-2 text-xs">
-              <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
-                <span>• CREA PF (Conselho):</span>
-                <strong class="text-white">R$ 228,84</strong>
-              </div>
-              <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
-                <span>• INSS / DCTFWeb Empresa:</span>
-                <strong class="text-white">R$ 220,00</strong>
-              </div>
-              <div class="flex justify-between py-1 text-slate-300">
-                <span>• Associação ABECE:</span>
-                <strong class="text-white">R$ 110,00</strong>
-              </div>
-            </div>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-800/80 text-[11px] text-slate-400">
-            Conformidade fiscal e profissional da engenharia.
-          </div>
-        </div>
-
-        <!-- PJ 6: OPERAÇÃO & TARIFAS -->
-        <div class="panel-card rounded-2xl p-5 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
-              <div>
-                <h3 class="text-sm font-bold text-white">6. Tarifas & Deslocamentos</h3>
-                <span class="text-[11px] text-slate-400">Meta: R$ 450,00</span>
-              </div>
-              <span class="text-base font-bold text-white">R$ 447,45</span>
-            </div>
-            <div class="space-y-2 text-xs">
-              <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
-                <span>• Pix Operacionais / Serviços:</span>
-                <strong class="text-white">R$ 357,45</strong>
-              </div>
-              <div class="flex justify-between py-1 border-b border-slate-800/40 text-slate-300">
-                <span>• Cesta Manutenção Caixa PJ:</span>
-                <strong class="text-white">R$ 73,00</strong>
-              </div>
-              <div class="flex justify-between py-1 text-slate-300">
-                <span>• Tarifas Pix Caixa PJ:</span>
-                <strong class="text-white">R$ 17,00</strong>
-              </div>
-            </div>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-800/80 text-[11px] text-slate-400">
-            Tarifas bancárias e pequenas operações do dia a dia.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ============================================================== -->
-    <!-- TAB 5: TRANSIÇÃO PRÓ-LABORE & CONCILIAÇÃO -->
+    <!-- ABA 4: TRANSIÇÃO PRÓ-LABORE & CONCILIAÇÃO -->
     <!-- ============================================================== -->
     <div id="view-prolabore" class="hidden space-y-6">
       <div class="p-5 rounded-2xl bg-gradient-to-r from-rose-950/40 via-slate-900 to-slate-900 border border-rose-800/30">
@@ -775,13 +615,13 @@
     </div>
 
     <!-- ============================================================== -->
-    <!-- TAB 6: EXTRATO INTELIGENTE COM FILTROS -->
+    <!-- ABA 5: EXTRATO INTELIGENTE COM FILTROS -->
     <!-- ============================================================== -->
     <div id="view-extrato" class="hidden space-y-4">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-xl bg-slate-900 border border-slate-800">
         <div>
           <h2 class="text-sm font-bold text-white flex items-center gap-2">
-            <i class="fa-solid fa-list-check text-sky-400"></i> Extrato de Lançamentos com Filtros Individuais por Coluna
+            <i class="fa-solid fa-list-check text-sky-400"></i> Extrato Geral de Lançamentos (232 transações)
           </h2>
           <p class="text-xs text-slate-400">Filtre por mês de competência, pessoa física ou jurídica, categoria ou cruzamento de contas.</p>
         </div>
@@ -908,39 +748,46 @@
       });
     }
 
-    // Alternar Abas
+    // Alternar Abas Principais
     function switchTab(tabId) {
-      const tabs = ['tempo-real', 'imoveis', 'pf', 'pj', 'prolabore', 'extrato'];
+      const tabs = ['outubro', 'setembro', 'imoveis', 'prolabore', 'extrato'];
       tabs.forEach(t => {
         const view = document.getElementById('view-' + t);
         const btn = document.getElementById('tab-nav-' + t);
         if (view) view.classList.add('hidden');
         if (btn) btn.classList.remove('active');
       });
+
       const targetView = document.getElementById('view-' + tabId);
       const targetBtn = document.getElementById('tab-nav-' + tabId);
       if (targetView) targetView.classList.remove('hidden');
       if (targetBtn) targetBtn.classList.add('active');
+
+      // Sincronizar pills do topo
+      const pillOut = document.getElementById('pill-out');
+      const pillSet = document.getElementById('pill-set');
+      if (tabId === 'outubro') {
+        pillOut.classList.add('active');
+        pillSet.classList.remove('active');
+      } else if (tabId === 'setembro') {
+        pillSet.classList.add('active');
+        pillOut.classList.remove('active');
+      }
 
       if (tabId === 'extrato') {
         applyColumnFilters();
       }
     }
 
-    // Seletor de Mês Ativo
-    function setMonthFilter(mes) {
-      const pillOut = document.getElementById('pill-out');
-      const pillSet = document.getElementById('pill-set');
-      if (mes === '10/2026') {
-        pillOut.classList.add('active');
-        pillSet.classList.remove('active');
+    // Seletor de Mês no Topo (Alterna aba diretamente)
+    function selectMonthView(mes) {
+      if (mes === 'outubro') {
+        switchTab('outubro');
         document.getElementById('colFilterMes').value = 'Outubro/2026';
-      } else {
-        pillSet.classList.add('active');
-        pillOut.classList.remove('active');
+      } else if (mes === 'setembro') {
+        switchTab('setembro');
         document.getElementById('colFilterMes').value = 'Setembro/2026';
       }
-      applyColumnFilters();
     }
 
     // Filtros de Tabela
@@ -1025,7 +872,6 @@
       applyColumnFilters();
     }
 
-    // Iniciar na carga
     document.addEventListener('DOMContentLoaded', () => {
       renderPendentes();
       applyColumnFilters();
